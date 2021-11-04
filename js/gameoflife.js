@@ -22,16 +22,28 @@ const corners = (state = []) => {
       bottomLeft: [0,0]
     }
   }
-  const xs= state.map(([x, _]) => x);
-  const ys = state.map(([_, y]) => y); 
+  const w = state.map(([x, _]) => x);
+  const z = state.map(([_, y]) => y); 
   return{
-    topRight: [Math.max(...xs), Math.max(...ys)],
-    bottomLeft: [Math.min(...xs), Math.min(...ys)]
+    topRight: [Math.max(...w), Math.max(...z)],
+    bottomLeft: [Math.min(...w), Math.min(...z)]
   }
 
 };
 
-const printCells = (state) => {};
+const printCells = (state) => {
+  const { topRight, bottomLeft } = corners(state);
+  let output = "";
+  for (y = topRight[1]; y >= bottomLeft[1]; --y) {
+    let row = [];
+    for (x = bottomLeft[0]; x <= topRight[0]; ++x) {
+      row.push(printCell([x, y], state));
+    }
+    output += row.join(" ") + "\n";
+  }
+  return output;
+};
+
 
 const getNeighborsOf = ([x, y]) => {};
 
