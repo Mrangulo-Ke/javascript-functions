@@ -22,11 +22,11 @@ const corners = (state = []) => {
       bottomLeft: [0,0]
     }
   }
-  const z = state.map(([x, _]) => x);
-  const s = state.map(([_, y]) => y); 
+  const xs= state.map(([x, _]) => x);
+  const ys = state.map(([_, y]) => y); 
   return{
-    topRight: [math.max(...z), math.max(...s)],
-    bottomLeft: [math.min(...z), math.min(...s)]
+    topRight: [Math.max(...xs), Math.max(...ys)],
+    bottomLeft: [Math.min(...xs), Math.min(...ys)]
   }
 
 };
