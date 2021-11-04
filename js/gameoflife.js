@@ -8,15 +8,12 @@ function same([x, y], [j, k]) {
 
 // The game state to search for `cell` is passed as the `this` value of the function.
 function contains(cell) {
-  for (i = 0; i < this.length; ++i) {
-    if (same(this[i], cell)) {
-      return true;
-    }
-  }
-  return false;
+  return this.some((c) => same(c, cell));
 }
-
-const printCell = (cell, state) => {};
+ 
+const printCell = (cell, state) => {
+  return contains.call(state, cell) ? "\u25a3": "\u25a2"
+};
 
 const corners = (state = []) => {};
 
